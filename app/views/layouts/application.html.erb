@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Флэшкарточкер</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="application.css">
+  <link href='https://fonts.googleapis.com/css?family=Russo+One&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <section id="container">
+    <header class="clearfix">
+      <h1>Флэшкарточкер</h1>
+      <ul class="nav navbar-nav">
+        <li><a href="#">Все карточки</a></li>
+        <li><a href="#">Добавить карточку</a></li>
+      </ul>
+    </header>
+    <section>
+      <%= yield %>
+    </section>
+  </section>
+
+</body>
+</html>
+
