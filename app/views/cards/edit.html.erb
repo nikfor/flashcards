@@ -1,0 +1,6 @@
+<%= simple_form_for @card do |f| %>
+    <%= f.input :original_text, label: t("card.original_text"), class: "text_field"%> 
+    <%= f.input :translated_text, label: t("card.translated_text"), class: "text_field" %> 
+    <%= f.input :review_date, as: :date, html5: true  %> 
+    <%= f.button :submit, t("card.edit_card_btn"), class: "left_btn"%>
+ <% end %>

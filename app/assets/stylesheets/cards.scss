@@ -1,3 +1,25 @@
 // Place all the styles related to the cards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+label{
+  font-weight: bold;
+  width: 150px;
+  margin-top: 10px;
+}
+
+abbr{
+  display: none;
+}
+
+.left_btn{
+  display: block;
+  float: right;
+  margin-right: 630px;
+  margin-top: 20px;
+
+}
+
+.text_field{
+  margin-top: 10px;
+}

@@ -3,3 +3,10 @@ ru:
     original_text: "Оригинал"
     translated_text: "Перевод"
     review_date: "Дата просмотра"
+    all_cards: "Все карточки"
+    add_card: "Добавить карточку"
+    create_card_btn: "Создать карточку"
+    edit_card_btn: "Изменить данные карточки"
+    delete: "Удалить"
+  errors:
+    eql_validate_err: "Перевод текста не должен совпадать с оригиналом"

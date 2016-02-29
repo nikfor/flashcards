@@ -14,8 +14,8 @@
     <header class="clearfix">
       <h1>Флэшкарточкер</h1>
       <ul class="nav navbar-nav">
-        <li><a href="cards">Все карточки</a></li>
-        <li><a href="#">Добавить карточку</a></li>
+        <li><%= link_to t("card.all_cards"), cards_path %></li>
+        <li><%= link_to t("card.add_card"), new_card_path %></li>
       </ul>
     </header>
     <section>
