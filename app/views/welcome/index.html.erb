@@ -1,3 +1,15 @@
 <p style="font-size: 22px;">
-  Первый в мире удобный менеджер флеш-карточек. Именно так.
+  <%= t("card.head_text") %>
 </p>
+
+<div class="translated_block">
+  <span><%=t("card.original_word")%>:</span>
+  <div class="translated_text"><%= @card.translated_text %></div>
+</div>
+<div class="original_block">
+  <span class="enter_word_label"><%=t("card.enter_translated_word")%>:</span>
+  <%= simple_form_for :expected_card, url: trainer_path(@card), as: :trainer do |f| %> 
+  <%= f.input :expected_text, class: "text_field"%> 
+  <%= f.button :submit, t("card.check"), class: "btn btn-default btn-lg"%>
+  <% end %>
+</div>

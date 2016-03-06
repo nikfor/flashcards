@@ -10,7 +10,18 @@ class Card < ActiveRecord::Base
   end
 
   def card_date_set
-    self.review_date ||= Date.today + 3
+    self.review_date ||= 3.days.from_now
+  end
+
+  scope :actual_cards, -> { where("review_date <= ?", Time.current).order("RANDOM()").first }
+  
+
+  def eql_translation?(text)       
+    original_text.downcase == text.downcase 
+  end  
+
+  def touch_review_date!
+    update_column(:review_date, 3.days.from_now)
   end
 
 end

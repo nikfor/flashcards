@@ -23,7 +23,7 @@ class CardsController < ApplicationController
   end
 
   def update
-    @card.update_attributes(card_params)
+    @card.update(card_params)
     if @card.valid?
       redirect_to cards_path
     else
@@ -45,4 +45,5 @@ class CardsController < ApplicationController
   def find_card
     @card = Card.find(params[:id])
   end
+
 end
