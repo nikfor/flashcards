@@ -8,5 +8,12 @@ ru:
     create_card_btn: "Создать карточку"
     edit_card_btn: "Изменить данные карточки"
     delete: "Удалить"
+    original_word: "Оригинал слова"
+    enter_translated_word: "Введите перевод слова"
+    check: "Проверить"
+    head_text: "Первый в мире удобный менеджер флеш-карточек. Именно так."
   errors:
     eql_validate_err: "Перевод текста не должен совпадать с оригиналом"
+  notice:
+    right: "Верно!"
+    not_right: "не верно!"

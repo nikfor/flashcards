@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.1'
+gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
@@ -18,7 +18,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 #gem 'sass-rails', '>= 3.2'
 
 gem 'simple_form'
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.6'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

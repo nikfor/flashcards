@@ -1,5 +1,36 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
+.translated_text{
+  background-color: lighten(#000, 50.5%); 
+  font-size: 50px;
+  font-family: 'Jura', sans-serif;
+  text-align: center;
+  width: 600px;
+}
 
+.translated_block>span{
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
+div.original_block label{
+  display: none;
+}
+
+.enter_word_label{
+  display: block;
+  margin-top: 25px;
+}
+
+.original_block input[type='text']{
+  border: none;
+  background-color: lighten(#000, 50.5%); 
+  font-size: 50px;
+  font-family: 'Jura', sans-serif;
+  text-align: center;
+  width: 600px;
+}
+
+.original_block input[type='submit']{
+  margin-top: 25px;
+  margin-left: 200px;
+}
