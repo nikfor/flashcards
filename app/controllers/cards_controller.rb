@@ -16,7 +16,7 @@ class CardsController < ApplicationController
       redirect_to cards_path
     else
       render "new"
-    end
+    end 
   end
 
   def edit
@@ -32,8 +32,8 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    @card.destroy
-    redirect_to cards_path
+      @card.destroy
+      redirect_to cards_path
   end
 
   private
@@ -43,7 +43,8 @@ class CardsController < ApplicationController
   end
 
   def find_card
-    @card = Card.find(params[:id])
+    @card = Card.where(id: params[:id]).first
+    render_404 unless @card
   end
 
 end
