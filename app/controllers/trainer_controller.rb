@@ -1,7 +1,7 @@
 class TrainerController < ApplicationController
 
   def review
-    card = Card.where(id: params[:id]).first
+    card = Card.find_by(id: params[:id])
     unless card
       render_404 
     else

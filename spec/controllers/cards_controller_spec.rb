@@ -4,7 +4,7 @@ describe CardsController, type: :controller do
 
   let(:test_card) { FactoryGirl.create(:card) }
 
-  describe 'create action' do
+  describe '#create' do
 
     it 'redirect to cards_path if arguments is valid' do
       post :create, card: { original_text: "Invoke", translated_text: "Призывать" }
@@ -18,7 +18,7 @@ describe CardsController, type: :controller do
 
   end
 
-  describe 'update action' do 
+  describe '#update' do 
 
     it 'redirect to cards_path if arguments is valid' do
        patch :update, id: test_card.id, card: { original_text: "Invoke", translated_text: "Призывать" }
@@ -37,7 +37,7 @@ describe CardsController, type: :controller do
 
   end
 
-  describe 'destroy action' do
+  describe '#destroy' do
 
     it 'redirect to cards_path if card found' do
        delete :destroy, id: test_card.id
