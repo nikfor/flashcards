@@ -11,20 +11,18 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.create(card_params)
-    if @card.valid?
+    if Card.create(card_params)
       redirect_to cards_path
     else
       render "new"
-    end
+    end 
   end
 
   def edit
   end
 
   def update
-    @card.update(card_params)
-    if @card.valid?
+    if @card.update(card_params)
       redirect_to cards_path
     else
       render "edit"
@@ -32,8 +30,8 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    @card.destroy
-    redirect_to cards_path
+      @card.destroy
+      redirect_to cards_path
   end
 
   private
@@ -43,7 +41,8 @@ class CardsController < ApplicationController
   end
 
   def find_card
-    @card = Card.find(params[:id])
+    @card = Card.find_by(id: params[:id])
+    render_404 unless @card
   end
 
 end
