@@ -13,7 +13,7 @@ class Card < ActiveRecord::Base
     self.review_date ||= 3.days.from_now
   end
 
-  scope :actual_cards, -> { where("review_date <= ?", Time.current).order("RANDOM()").first }
+  scope :actual_cards, -> { where("review_date <= ?", Time.current ).order("RANDOM()") }
   
   def eql_translation?(text)       
     original_text.downcase == text.downcase 

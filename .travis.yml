@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+  - 2.2.1
+env:
+  - DB=postgresql
+services:
+  - postgresql
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - echo 'Europe/Moscow' | sudo tee /etc/timezone
+  - sudo dpkg-reconfigure --frontend noninteractive tzdata
+addons:
+  postgresql: "9.3"

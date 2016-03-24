@@ -7,9 +7,9 @@ class TrainerController < ApplicationController
     else
       if card.eql_translation?(params[:expected_card][:expected_text])
         card.touch_review_date!
-        redirect_to :back, alert: t("notice.right")
+        redirect_to :back, alert: t("alert.right")
       else
-        redirect_to :back, alert: t("notice.not_right")
+        redirect_to :back, alert: t("alert.not_right")
       end
     end
   end
