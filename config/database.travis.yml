@@ -1,0 +1,27 @@
+defaults: &defaults
+  pool: 5
+  timeout: 5000
+  encoding: unicode
+  adapter: postgresql
+  host: localhost
+
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: flashcards_development
+  pool: 5
+  username: postgres
+
+
+test:
+  adapter: postgresql
+  database: travis_ci_test
+  encoding: utf8
+  pool: 5
+  username: postgres
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: flashcards_production
+  username: flashcards
