@@ -2,11 +2,10 @@ require 'rails_helper'
 
 describe "check word page", type: :feature do
     
+    let!(:card) { FactoryGirl.create(:card, review_date: 4.days.ago) }
+    let!(:card2) { FactoryGirl.create(:card, review_date: 4.days.ago) }
+
     before :each do
-      card = FactoryGirl.create(:card)
-      card2 = FactoryGirl.create(:card)
-      card.update_column(:review_date, 4.days.ago)
-      card2.update_column(:review_date, 4.days.ago)
       visit root_path
     end
 
@@ -20,6 +19,14 @@ describe "check word page", type: :feature do
       fill_in 'expected_original_text', :with => 'Provide'
       click_button 'Проверить'
       expect(page.find('.alert')).to have_content I18n.t("alert.right") 
+    end
+
+    it 'has no actual cards in base' do
+      fill_in 'expected_original_text', :with => 'Provide'
+      click_button 'Проверить'
+      fill_in 'expected_original_text', :with => 'Provide'
+      click_button 'Проверить'
+      expect(page.find('.alert')).to have_content I18n.t("alert.not_have_actual_card") 
     end
 
   end

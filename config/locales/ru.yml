@@ -17,3 +17,4 @@ ru:
   alert:
     right: "Верно!"
     not_right: "Не верно!"
+    not_have_actual_card: "В базе отсутствуют карточки с актуальной датой"
