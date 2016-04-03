@@ -1,5 +1,7 @@
 class Card < ActiveRecord::Base
 
+  belongs_to :user
+  
   before_validation :card_date_set, on: :create
   validates :review_date, :translated_text, :original_text, presence: true
   validate :translate_should_not_be_eql_original
