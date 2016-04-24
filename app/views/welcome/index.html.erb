@@ -9,8 +9,8 @@
   <div class="original_block">
     <span class="enter_word_label"><%=t("card.enter_translated_word")%>:</span>
     <%= simple_form_for :expected_card, url: trainer_path(@card), as: :trainer do |f| %> 
-    <%= f.input :expected_text, input_html: { id: 'expected_original_text' }, autofocus: true %> 
-    <%= f.button :submit, t("card.check"), class: "btn btn-default btn-lg"%>
+      <%= f.input :expected_text, input_html: { id: 'expected_original_text' }, autofocus: true %> 
+      <%= f.button :submit, t("card.check"), class: "btn btn-default btn-lg"%>
     <% end %>
   </div>
 <% else %>

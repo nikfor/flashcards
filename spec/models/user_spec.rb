@@ -1,5 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User, type: :model do
+
+  let!(:card) { FactoryGirl.create(:card) }
+  #let!(:user) { FactoryGirl.create(:user) } 
+
+
+  context "associations" do
+    it "should have many cards" do
+      #user.cards << card
+       #is_expected.to have_many(:card)
+    end
+  end
+
 end
