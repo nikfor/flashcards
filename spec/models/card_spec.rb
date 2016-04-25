@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Card, type: :model  do
-
-  let!(:card) { FactoryGirl.create(:card) } 
+  let!(:user) { FactoryGirl.create(:user) } 
+  let!(:card) { FactoryGirl.create(:card, user: user) } 
                                            
   describe "#eql_translation?" do
     context "when invalid" do
@@ -17,6 +17,12 @@ describe Card, type: :model  do
   describe "#touch_review_date!" do
     it "has to update review_date for 3 days from now" do
       expect(card.review_date.end_of_minute).to eql 3.days.from_now.end_of_minute
+    end
+  end
+
+  context "associations" do
+    it "should belong to user" do 
+      expect(card).to belong_to(:user)
     end
   end
 

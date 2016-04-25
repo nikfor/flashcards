@@ -4,7 +4,7 @@ class Card < ActiveRecord::Base
   
   before_validation :card_date_set, on: :create
   validates :review_date, :translated_text, :original_text, presence: true
-  validates_associated :cards
+  validates_associated :user
   validate :translate_should_not_be_eql_original
 
   scope :actual_cards, -> { where("review_date <= ?", Time.current).order("RANDOM()") }
