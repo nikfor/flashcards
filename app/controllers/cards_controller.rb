@@ -1,9 +1,9 @@
 class CardsController < ApplicationController
-  
+
   before_action :find_card, only: [:edit, :update, :destroy]
 
   def index
-    @cards = Card.all
+    @cards = current_user.cards
   end
 
   def new
@@ -11,9 +11,9 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.new(card_params)
     if @card.save
-      redirect_to cards_path
+      redirect_to cards_path, :alert => t('card.success_create')
     else
       render "new"
     end
@@ -24,15 +24,15 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      redirect_to cards_path
+      redirect_to cards_path, :alert => t('card.success_update')
     else
       render "edit"
     end
   end
 
   def destroy
-      @card.destroy
-      redirect_to cards_path
+    @card.destroy
+    redirect_to cards_path, :alert => t('card.success_destroy')
   end
 
   private
@@ -42,7 +42,7 @@ class CardsController < ApplicationController
   end
 
   def find_card
-    @card = Card.find_by(id: params[:id])
+    @card = current_user.cards.find_by(id: params[:id])
     render_404 unless @card
   end
 

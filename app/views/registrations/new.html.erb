@@ -1,0 +1,8 @@
+<h1><%=t("user.registration")%></h1>
+<%= simple_form_for @user, url: registrations_path do |f| %>
+  <%= f.input :email, label: t("user.email"), class: "text_field"%>
+  <%= f.input :password, label: t("user.password"), class: "text_field" %>
+  <%= f.input :password_confirmation, label: t("user.password_confirmation"), class: "text_field" %>
+  <%= f.button :submit, t("user.create"), class: "left_btn btn-lg"%>
+ <% end %>
+

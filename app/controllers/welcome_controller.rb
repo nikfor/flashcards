@@ -1,7 +1,5 @@
 class WelcomeController < ApplicationController
 
-  def index
-    @card = Card.actual_cards.first
-  end
+  skip_before_action :require_login
 
 end

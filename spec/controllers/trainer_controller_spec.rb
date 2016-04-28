@@ -2,7 +2,13 @@ require 'rails_helper'
 
 describe TrainerController, type: :controller do
 
-  let(:test_card) { FactoryGirl.create(:card) }
+  let!(:user) { FactoryGirl.create(:user, email: "example@abcd.ru") }
+  let!(:test_card) { FactoryGirl.create(:card, user_id: user.id) }
+
+  before :each do
+    login_user(user)
+  end
+
 
   context "if card found and expected text is right" do
     it 'redirect to back_page' do
@@ -14,7 +20,7 @@ describe TrainerController, type: :controller do
     it 'call touch_review_date!' do
       request.env["HTTP_REFERER"] = "/flashcard"
       expect_any_instance_of(Card).to receive(:touch_review_date!)
-      post :review, id: test_card.id, expected_card: {expected_text: 'provide'} 
+      post :review, id: test_card.id, expected_card: {expected_text: 'provide'}
     end
   end
 
