@@ -1,6 +1,6 @@
 
 .translated_text{
-  background-color: lighten(#000, 50.5%); 
+  background-color: lighten(#000, 50.5%);
   font-size: 50px;
   font-family: 'Jura', sans-serif;
   text-align: center;
@@ -23,7 +23,7 @@ div.original_block label{
 
 .original_block input[type='text']{
   border: none;
-  background-color: lighten(#000, 50.5%); 
+  background-color: lighten(#000, 50.5%);
   font-size: 50px;
   font-family: 'Jura', sans-serif;
   text-align: center;
@@ -35,6 +35,11 @@ div.original_block label{
   margin-left: 200px;
 }
 
-.alert {
+.alert{
   width: 150px;
+}
+
+.img_container{
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

@@ -1,12 +1,13 @@
-FactoryGirl.define do 
+FactoryGirl.define do
 
   sequence :email do |n|
     "person#{n}@example.com"
   end
 
-  factory :user do 
+  factory :user do
     email
     password "12345678"
+    password_confirmation "12345678"
 
     # factory :user_with_cards do
     #   transient do
@@ -18,5 +19,5 @@ FactoryGirl.define do
     # end
 
   end
-  
+
 end

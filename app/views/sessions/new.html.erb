@@ -1,0 +1,9 @@
+<h1>Вход</h1>
+
+<%= simple_form_for :session, url: sessions_path do |f| %>
+  <%= f.input :email, label: t("user.email"), class: "text_field"%>
+  <%= f.input :password, label: t("user.password"), class: "text_field" %>
+  <%= f.button :submit, t("user.sign_in"), class: "left_btn btn-lg"%>
+ <% end %>
+
+

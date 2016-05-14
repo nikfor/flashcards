@@ -4,15 +4,25 @@
     <th><%= t("card.original_text") %></th>
     <th><%= t("card.translated_text") %></th>
     <th><%= t("card.review_date") %></th>
-    <th><%= t("card.delete") %><th>
+    <% if current_user %>
+      <th><%= t("card.delete") %><th>
+    <% end %>
   </tr>
   <% @cards.each do |card| %>
     <tr>
       <td><%= card.id %></td>
-      <td><%= link_to card.original_text, edit_card_path(card) %></td>
+      <td>
+        <% if current_user %>
+          <%= link_to card.original_text, edit_card_path(card) %>
+        <% else %>
+          <%= card.original_text %>
+        <% end %>
+      </td>
       <td><%= card.translated_text %></td>
       <td><%= card.review_date.strftime("%d.%m.%Y") %></td>
-      <th><%= link_to t("card.delete"), card_path(card), method: :delete %><th>
+      <% if current_user %>
+        <td><%= link_to t("card.delete"), card_path(card), method: :delete %><td>
+      <% end %>
     </tr>
   <% end %>
 </table>

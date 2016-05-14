@@ -3,7 +3,6 @@
 <head>
   <title>Флэшкарточкер</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="application.css">
   <link href='https://fonts.googleapis.com/css?family=Russo+One&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Jura&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -15,15 +14,26 @@
     <header class="clearfix">
       <h1>Флэшкарточкер</h1>
       <ul class="nav navbar-nav">
-        <li><%= link_to t("card.all_cards"), cards_path %></li>
-        <li><%= link_to t("card.add_card"), new_card_path %></li>
+        <% if current_user %>
+          <li><%= link_to t("card.trainer"), trainers_path %></li>
+          <li><%= link_to t("card.all_cards"), cards_path %></li>
+          <li><%= link_to t("card.add_card"), new_card_path %></li>
+          <li class="reg-btns"><%= link_to t("user.log_out"), log_out_path, method: :delete %></li>
+          <li class="reg-btns"><%= link_to current_user.email, user_path(current_user) %></a></li>
+        <% else %>
+          <li class="reg-btns"><%= link_to t("user.sign_up"), "registration" %></li>
+          <li class="reg-btns"><%= link_to t("user.sign_in"), "sign_in" %></li>
+          <li class="reg-btns"><%= link_to t("user.sign_in_with_twitter"), auth_at_provider_path(provider: :twitter) %></li>
+        <% end %>
       </ul>
     </header>
     <section>
       <%= yield %>
     </section>
   </section>
-
+  <% if flash[:alert] %>
+    <div class="alert alert-info "><%= flash[:alert] %><div>
+  <% end %>
 </body>
 </html>
 

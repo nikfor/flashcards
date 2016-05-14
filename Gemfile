@@ -19,6 +19,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'simple_form'
 gem 'nokogiri', '~> 1.6'
+gem 'sorcery'
+gem 'validates_email_format_of'
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
