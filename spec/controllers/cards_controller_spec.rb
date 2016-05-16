@@ -24,6 +24,14 @@ describe CardsController, type: :controller do
       expect(response).to render_template('new')
     end
 
+    context 'image of cards tests' do
+      it { expect(test_card).to have_attached_file(:avatar) }
+      it { expect(test_card).to validate_attachment_content_type(:avatar).
+                allowing('image/png', 'image/gif', 'image/jpg', 'image/jpeg').
+                rejecting('text/plain', 'text/xml')
+          }
+    end
+
   end
 
   describe '#update' do

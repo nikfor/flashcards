@@ -1,9 +1,11 @@
 <p style="font-size: 22px;">
   <%= t("card.head_text") %>
 </p>
-<p>Пожалуйста зарегестрируйтесь или войдите в профиль чтобы продолжить!</p>
+<% unless current_user %>
+  <p>Пожалуйста зарегестрируйтесь или войдите в профиль чтобы продолжить!</p>
+<% end %>
 <div class="img_container">
-  <img src="public/../../../flashcards_image.jpg" class="img-responsive" alt="Responsive image">
+  <%= image_tag 'flashcards_image.jpg' %>
 </div>
 
 

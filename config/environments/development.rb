@@ -35,7 +35,13 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+  Paperclip.options[:command_path] = "/usr/bin/"
 
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_host_name => "s3.amazonaws.com", #ENV['AMAZON_HOST_NAME'],
+      bucket: "flashcards-marat"#ENV['AMAZON_BUCKET']
+  }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

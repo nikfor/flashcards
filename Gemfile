@@ -22,6 +22,8 @@ gem 'nokogiri', '~> 1.6'
 gem 'sorcery'
 gem 'validates_email_format_of'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem "paperclip"
+gem 'aws-sdk', '< 2.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -59,6 +61,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'shoulda'
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
 end
 

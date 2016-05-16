@@ -2,5 +2,9 @@
     <%= f.input :original_text, label: t("card.original_text"), class: "text_field"%>
     <%= f.input :translated_text, label: t("card.translated_text"), class: "text_field" %>
     <%= f.input :review_date, as: :date, html5: true  %>
+    <% if @card.avatar %>
+      <%= image_tag @card.avatar.url(:medium), class: "edit_car_picture" %>
+    <% end %>
+    <%= f.input :avatar, as: :file, label: t("card.picture_add") %>
     <%= f.button :submit, t("card.edit_card_btn"), class: "left_btn"%>
  <% end %>
