@@ -1,0 +1,11 @@
+production:
+  storage: :s3,
+  s3_credentials:
+    bucket: ENV['AMAZON_BUCKET'],
+    host_name: ENV['AMAZON_HOST_NAME']
+
+development:
+  storage: :s3,
+  s3_credentials:
+    bucket: ENV['AMAZON_BUCKET'],
+    host_name: ENV['AMAZON_HOST_NAME']

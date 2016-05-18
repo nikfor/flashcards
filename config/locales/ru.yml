@@ -16,6 +16,7 @@ ru:
     success_create: "Карточка успешно создана"
     success_update: "Карточка успешно отредактирована"
     success_destroy: "Карточка успешно удалена"
+    picture_add: "Добавить картинку"
   errors:
     eql_validate_err: "Перевод текста не должен совпадать с оригиналом"
   alert:
