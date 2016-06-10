@@ -1,19 +1,21 @@
 class CardsController < ApplicationController
 
   before_action :find_card, only: [:edit, :update, :destroy]
+  before_action :find_pack
 
   def index
-    @cards = current_user.cards
+    @cards = @pack.cards
+    flash.now[:alert] = t('pack.empty') if @cards.empty?
   end
 
   def new
-    @card = Card.new
+    @card = @pack.cards.new
   end
 
   def create
-    @card = current_user.cards.new(card_params)
+    @card = @pack.cards.new(card_params)
     if @card.save
-      redirect_to cards_path, :alert => t('card.success_create')
+      redirect_to pack_cards_path, :alert => t('card.success_create')
     else
       render "new"
     end
@@ -24,7 +26,7 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      redirect_to cards_path, :alert => t('card.success_update')
+      redirect_to pack_cards_path, :alert => t('card.success_update')
     else
       render "edit"
     end
@@ -32,7 +34,7 @@ class CardsController < ApplicationController
 
   def destroy
     @card.destroy
-    redirect_to cards_path, :alert => t('card.success_destroy')
+    redirect_to pack_cards_path, :alert => t('card.success_destroy')
   end
 
   private
@@ -41,8 +43,12 @@ class CardsController < ApplicationController
     params.require(:card).permit(:original_text, :translated_text, :avatar)
   end
 
+  def find_pack
+    @pack = current_user.packs.find_by(id: params[:pack_id])
+  end
+
   def find_card
-    @card = current_user.cards.find_by(id: params[:id])
+    @card = find_pack.cards.find_by(id: params[:id])
     render_404 unless @card
   end
 

@@ -13,7 +13,13 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :cards
+
+  resources :packs do
+    resources :cards
+  end
+
+  get 'packs/:id/current', to: 'packs#current_pack', as: :current_pack
+
   resources :users, only: [:show, :edit, :update]
   get '/registration', to: 'registrations#new'
   post '/registrations', to: 'registrations#create'
@@ -21,7 +27,6 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get '/sign_in', to: 'sessions#new', as: :sign_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
-
 
   get 'oauths/oauth'
   get 'oauths/callback'

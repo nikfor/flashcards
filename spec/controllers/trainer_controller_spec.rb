@@ -3,7 +3,9 @@ require 'rails_helper'
 describe TrainerController, type: :controller do
 
   let!(:user) { FactoryGirl.create(:user, email: "example@abcd.ru") }
-  let!(:test_card) { FactoryGirl.create(:card, user_id: user.id) }
+  let!(:pack) {FactoryGirl.create(:pack_with_cards, user: user)}
+  let!(:test_card) { FactoryGirl.create(:card, pack: pack) }
+
 
   before :each do
     login_user(user)
@@ -23,6 +25,7 @@ describe TrainerController, type: :controller do
       post :review, id: test_card.id, expected_card: {expected_text: 'provide'}
     end
   end
+
 
   it 'render 404 page if card not found' do
     post :review, id: 9879, expected_card: {expected_text: 'lskdjl'}

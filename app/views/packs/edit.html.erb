@@ -1,0 +1,4 @@
+<%= simple_form_for @pack do |f| %>
+  <%= f.input :name, label: t("pack.name"), class: "text_field" %>
+  <%= f.button :submit, t("button.edit"), class: "left_btn"%>
+<% end %>

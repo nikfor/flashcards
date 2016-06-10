@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 describe Card, type: :model  do
-  let!(:user) { FactoryGirl.create(:user) } 
-  let!(:card) { FactoryGirl.create(:card, user: user) } 
-                                           
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:pack) { FactoryGirl.create(:pack, user: user) }
+  let!(:card) { FactoryGirl.create(:card, pack: pack) }
+
   describe "#eql_translation?" do
     context "when invalid" do
       it { expect(card.eql_translation?("abrvalg!?")).to be false }
@@ -21,8 +22,12 @@ describe Card, type: :model  do
   end
 
   context "associations" do
-    it "should belong to user" do 
-      expect(card).to belong_to(:user)
+    it "should belong to pack" do
+      expect(card).to belong_to(:pack)
+    end
+
+    it "should belong to user" do
+      expect(pack).to belong_to(:user)
     end
   end
 
