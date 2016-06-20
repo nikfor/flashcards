@@ -6,4 +6,9 @@ class Pack < ActiveRecord::Base
 
   scope :current_packs, -> { where("current = ?", true) }
 
+  def activate!
+    user.packs.update_all(current: false)
+    update_attributes(current: true)
+  end
+
 end

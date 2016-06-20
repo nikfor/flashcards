@@ -12,7 +12,7 @@
         <td><%= pack.id %></td>
         <td><%= link_to pack.name, edit_pack_path(pack) %></td>
         <td><%= link_to t("pack.cards"), pack_cards_path(pack) %></td>
-        <td><%= link_to t("pack.current"), current_pack_path(pack) %></td>
+        <td><%= link_to t("pack.current"), pack_current_path(pack) %></td>
         <td><%= link_to t("pack.delete"), pack_path(pack), method: :delete %></td>
       </tr>
     <% end %>

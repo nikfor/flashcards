@@ -16,9 +16,10 @@ Rails.application.routes.draw do
 
   resources :packs do
     resources :cards
+    get :current
   end
 
-  get 'packs/:id/current', to: 'packs#current_pack', as: :current_pack
+  # get 'packs/:id/current', to: 'packs#current_pack', as: :current_pack
 
   resources :users, only: [:show, :edit, :update]
   get '/registration', to: 'registrations#new'

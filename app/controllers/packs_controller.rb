@@ -1,6 +1,6 @@
 class PacksController < ApplicationController
 
-  before_action :find_pack, only: [:edit, :update, :destroy, :current_pack]
+  before_action :find_pack, only: [:edit, :update, :destroy]
 
   def index
     @packs = current_user.packs
@@ -13,7 +13,7 @@ class PacksController < ApplicationController
   def create
     @pack = current_user.packs.new(pack_params)
     if @pack.save
-      redirect_to packs_path, :alert => t('pack.success_create')
+      redirect_to packs_path, alert: t('pack.success_create')
     else
       render "new"
     end
@@ -24,7 +24,7 @@ class PacksController < ApplicationController
 
   def update
     if @pack.update(pack_params)
-      redirect_to packs_path, :alert => t('pack.success_update')
+      redirect_to packs_path, alert: t('pack.success_update')
     else
       render "edit"
     end
@@ -33,13 +33,17 @@ class PacksController < ApplicationController
   def destroy
     @pack.cards.destroy_all
     @pack.destroy
-    redirect_to packs_path, :alert => t('pack.success_destroy')
+    redirect_to packs_path, alert: t('pack.success_destroy')
   end
 
-  def current_pack
-    current_user.packs.update_all(current: false)
-    @pack.update_attributes(current: true)
-    redirect_to packs_path, :alert => "#{@pack.name} #{t('pack.is_current')}"
+  def current
+    @pack = current_user.packs.find_by(id: params[:pack_id])
+    if @pack
+      @pack.activate!
+      redirect_to packs_path, alert: "#{@pack.name} #{t('pack.is_current')}"
+    else
+      render_404
+    end
   end
 
   private

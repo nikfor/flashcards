@@ -61,12 +61,12 @@ describe PacksController, type: :controller do
   describe '#current_pack' do
 
     it 'redirect to packs_path if pack successfully do current' do
-      get :current_pack, id: pack.id
+      get :current, pack_id: pack.id
       expect(response).to redirect_to(packs_path)
     end
 
     it 'render 404 page if pack doesnt belong to current user' do
-      get :current_pack, id: another_pack.id
+      get :current, pack_id: another_pack.id
       expect(response.status).to be(404)
     end
 

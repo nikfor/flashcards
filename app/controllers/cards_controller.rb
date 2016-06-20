@@ -15,7 +15,7 @@ class CardsController < ApplicationController
   def create
     @card = @pack.cards.new(card_params)
     if @card.save
-      redirect_to pack_cards_path, :alert => t('card.success_create')
+      redirect_to pack_cards_path, alert: t('card.success_create')
     else
       render "new"
     end
@@ -26,7 +26,7 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      redirect_to pack_cards_path, :alert => t('card.success_update')
+      redirect_to pack_cards_path, alert: t('card.success_update')
     else
       render "edit"
     end
@@ -34,7 +34,7 @@ class CardsController < ApplicationController
 
   def destroy
     @card.destroy
-    redirect_to pack_cards_path, :alert => t('card.success_destroy')
+    redirect_to pack_cards_path, alert: t('card.success_destroy')
   end
 
   private
