@@ -31,7 +31,6 @@ class PacksController < ApplicationController
   end
 
   def destroy
-    @pack.cards.destroy_all
     @pack.destroy
     redirect_to packs_path, alert: t('pack.success_destroy')
   end
