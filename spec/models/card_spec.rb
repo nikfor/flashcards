@@ -29,6 +29,12 @@ describe Card, type: :model  do
     it "should belong to user" do
       expect(pack).to belong_to(:user)
     end
+
+    it "dont create card without pack" do
+      expect{ Card.create(original_text: "Sister", translated_text: "Сестра") }.to raise_error
+    end
+
   end
+
 
 end

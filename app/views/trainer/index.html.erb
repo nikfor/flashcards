@@ -1,20 +1,31 @@
-<% if @card %>
-  <div class="translated_block">
-    <span><%=t("card.original_word")%>:</span>
-    <div class="translated_text"><%= @card.translated_text %></div>
-  </div>
-  <div class="original_block">
-    <span class="enter_word_label"><%=t("card.enter_translated_word")%>:</span>
-    <%= simple_form_for :expected_card, url: trainer_path(@card), as: :trainer do |f| %>
-      <%= f.input :expected_text, input_html: { id: 'expected_original_text' }, autofocus: true %>
-      <%= f.button :submit, t("card.check"), class: "btn btn-default btn-lg"%>
-    <% end %>
-    <div class="card_picture_block">
-      <% if @card.avatar %>
-        <%= image_tag @card.avatar.url(:medium) %>
-      <% end %>
+<% if current_user %>
+  <% if @card %>
+    <div class="translated_block">
+      <span><%=t("card.original_word")%>:</span>
+      <div class="translated_text"><%= @card.translated_text %></div>
     </div>
-  </div>
+    <div class="original_block">
+      <span class="enter_word_label"><%=t("card.enter_translated_word")%>:</span>
+      <%= simple_form_for :expected_card, url: trainer_path(@card), as: :trainer do |f| %>
+        <%= f.input :expected_text, input_html: { id: 'expected_original_text' }, autofocus: true %>
+        <%= f.button :submit, t("card.check"), class: "btn btn-default btn-lg"%>
+      <% end %>
+      <div class="card_picture_block">
+        <% if @card.avatar %>
+          <%= image_tag @card.avatar.url(:medium) %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <%= flash[:alert] = t("alert.not_have_actual_card") %>
+  <% end %>
 <% else %>
-  <%= flash[:alert] = t("alert.not_have_actual_card") %>
+  <p style="font-size: 22px;">
+    <%= t("card.head_text") %>
+  </p>
+  <p>Пожалуйста зарегестрируйтесь или войдите в профиль чтобы продолжить!</p>
+  <div class="img_container">
+    <%= image_tag 'flashcards_image.jpg' %>
+  </div>
 <% end %>
+

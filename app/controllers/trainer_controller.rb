@@ -3,18 +3,10 @@ class TrainerController < ApplicationController
   skip_before_action :require_login
 
   def index
-    if current_user.cards.empty?
-      redirect_to :back, alert: t("alert.no_have_cards")
-    elsif current_user.packs.empty?
-      redirect_to :back, alert: t("alert.no_have_packs")
-    elsif current_user.packs.current_packs.empty?
-      @card = current_user.cards.actual_cards.first
-      flash[:alert] = t("alert.choose_current_pack")
-    elsif find_current_pack.cards.empty?
-      @card = current_user.cards.actual_cards.first
-      flash.now[:alert] = t("alert.current_pack_empty")
-    else
-      @card = find_current_pack.cards.actual_cards.first
+    if current_user
+      unless @card = current_user.get_card
+        redirect_to packs_path, alert: t('alert.no_have_cards')
+      end
     end
   end
 

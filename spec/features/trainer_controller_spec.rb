@@ -35,13 +35,7 @@ describe "check word page", type: :feature do
       click_button 'Проверить'
       fill_in 'expected_original_text', :with => 'Provide'
       click_button 'Проверить'
-      expect(page.find('.alert-info')).to have_content I18n.t("alert.not_have_actual_card")
-    end
-
-    it 'view one of all user cards if current pack doesnt chosen' do
-      user.packs.update_all(current: false)
-      click_link 'Тренироваться'
-      expect(page.find('.alert')).to have_content I18n.t("alert.choose_current_pack")
+      expect(page.find('.alert-info')).to have_content I18n.t("alert.no_have_cards")
     end
 
   end
