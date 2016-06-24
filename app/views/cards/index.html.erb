@@ -1,28 +1,25 @@
 <table class="table">
+  <caption><%="Название колоды: #{parent_pack.name}" %></caption>
   <tr>
     <th>ID</th>
     <th><%= t("card.original_text") %></th>
     <th><%= t("card.translated_text") %></th>
     <th><%= t("card.review_date") %></th>
-    <% if current_user %>
-      <th><%= t("card.delete") %><th>
-    <% end %>
+    <th><%= t("card.delete") %><th>
   </tr>
-  <% @cards.each do |card| %>
-    <tr>
-      <td><%= card.id %></td>
-      <td>
-        <% if current_user %>
-          <%= link_to card.original_text, edit_card_path(card) %>
-        <% else %>
-          <%= card.original_text %>
-        <% end %>
-      </td>
-      <td><%= card.translated_text %></td>
-      <td><%= card.review_date.strftime("%d.%m.%Y") %></td>
-      <% if current_user %>
-        <td><%= link_to t("card.delete"), card_path(card), method: :delete %><td>
-      <% end %>
-    </tr>
+  <% if @cards %>
+    <% @cards.each do |card| %>
+      <tr>
+        <td><%= card.id %></td>
+        <td><%= link_to card.original_text, edit_pack_card_path(parent_pack, card) %></td>
+        <td><%= card.translated_text %></td>
+        <td><%= card.review_date.strftime("%d.%m.%Y") %></td>
+        <td><%= link_to t("card.delete"), pack_card_path(parent_pack, card), method: :delete %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
+<div class='control_buttons_block'>
+  <div class='add_card_button'><%= link_to t("card.add_card"), new_pack_card_path, class: 'btn btn-default' %></div>
+  <div class='current_pack_button'> </div>
+</div>

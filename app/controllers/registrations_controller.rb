@@ -10,8 +10,8 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(params[:user][:email], params[:user][:password])
-      flash[:alert] = t('user.success_registration')
-      redirect_to root_path
+      flash[:notice] = t('user.success_registration')
+      redirect_to packs_path
     else
       render "new"
     end

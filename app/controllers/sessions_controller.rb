@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     if login(params[:session][:email], params[:session][:password])
-      redirect_to root_path, alert: t('user.hello')
+      redirect_to packs_path, alert: t('user.hello')
     else
       flash.now[:alert] = t('user.not_exist_email_or_password')
       render 'new'
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to root_path, alert: t('user.bye')
+    redirect_to packs_path, alert: t('user.bye')
   end
 
 end

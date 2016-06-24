@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :cards
+  has_many :packs
+  has_many :cards, through: :packs, source: :cards
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
@@ -19,4 +20,15 @@ class User < ActiveRecord::Base
   validates :password_confirmation,
               presence: { message: I18n.t('user.enter_password_confirmation') },
               if: -> { new_record? || changes[:crypted_password] }
+
+  def get_card
+    unless packs.empty?
+      if packs.current_packs.empty? || packs.current_packs.first.cards.empty?
+        cards.actual_cards.first
+      else
+        packs.current_packs.first.cards.actual_cards.first
+      end
+    end
+  end
+
 end

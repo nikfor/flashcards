@@ -3,9 +3,11 @@ require 'rails_helper'
 describe CardsController, type: :controller do
 
   let!(:user) { FactoryGirl.create(:user, email: "example@abcd.ru") }
-  let!(:test_card) { FactoryGirl.create(:card, user_id: user.id) }
+  let!(:pack) { FactoryGirl.create(:pack, user: user) }
+  let!(:test_card) { FactoryGirl.create(:card, pack: pack) }
   let!(:another_user) { FactoryGirl.create(:user, email: "another@abcd.ru") }
-  let!(:another_card) { FactoryGirl.create(:card, user_id: another_user.id) }
+  let!(:another_pack) { FactoryGirl.create(:pack, user: another_user) }
+  let!(:another_card) { FactoryGirl.create(:card, pack: another_pack  ) }
 
   before :each do
     login_user(user)
@@ -14,13 +16,12 @@ describe CardsController, type: :controller do
   describe '#create' do
 
     it 'redirect to cards_path if arguments is valid' do
-
-      post :create, card: { original_text: "Invoke", translated_text: "Призывать", user_id: user.id }
-      expect(response).to redirect_to(cards_path)
+      post :create, pack_id: pack.id, card: { original_text: "Invoke", translated_text: "Призывать" }
+      expect(response).to redirect_to(pack_cards_path)
     end
 
     it 'render to back page if translation is equal to the original' do
-      post :create, card: { original_text: "Invoke", translated_text: "Invoke", user_id: user.id }
+      post :create, pack_id: pack.id, card: { original_text: "Invoke", translated_text: "Invoke"}
       expect(response).to render_template('new')
     end
 
@@ -37,22 +38,22 @@ describe CardsController, type: :controller do
   describe '#update' do
 
     it 'redirect to cards_path if arguments is valid' do
-      patch :update, id: test_card.id, card: { original_text: "Invoke", translated_text: "Призывать" }
-      expect(response).to redirect_to(cards_path)
+      patch :update, id: test_card.id, pack_id: test_card.pack_id, card: { original_text: "Invoke", translated_text: "Призывать" }
+      expect(response).to redirect_to(pack_cards_path)
     end
 
     it 'render edit page again if arguments is invalid' do
-      patch :update, id: test_card.id, card: { original_text: "Invoke", translated_text: "invoke" }
+      patch :update, id: test_card.id, pack_id: test_card.pack_id, card: { original_text: "Invoke", translated_text: "invoke" }
       expect(response).to render_template('edit')
     end
 
     it 'render 404 page if card not found' do
-      patch :update, id: 687, card: { original_text: "Invoke", translated_text: "Призывать" }
+      patch :update, id: 687, pack_id: test_card.pack_id, card: { original_text: "Invoke", translated_text: "Призывать" }
       expect(response.status).to be(404)
     end
 
     it 'render 404 page if updated card doesnt belong to current user' do
-      patch :update, id: another_card.id, card: { original_text: "Invoke", translated_text: "Призывать" }
+      patch :update, id: another_card.id, pack_id: pack.id, card: { original_text: "Invoke", translated_text: "Призывать" }
       expect(response.status).to be(404)
     end
 
@@ -61,17 +62,17 @@ describe CardsController, type: :controller do
   describe '#destroy' do
 
     it 'redirect to cards_path if card found' do
-       delete :destroy, id: test_card.id
-       expect(response).to redirect_to(cards_path)
+       delete :destroy, pack_id: test_card.pack_id, id: test_card.id
+       expect(response).to redirect_to(pack_cards_path)
     end
 
     it 'render 404 page if card not found' do
-      delete :destroy, id: 9879
+      delete :destroy, pack_id: test_card.pack_id, id: 9879
       expect(response.status).to be(404)
     end
 
     it 'render 404 page if deleted card doesnt belong to current user' do
-      delete :destroy, id: another_card.id
+      delete :destroy, pack_id: pack.id, id: another_card.id
       expect(response.status).to be(404)
     end
 

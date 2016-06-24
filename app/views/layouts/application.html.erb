@@ -16,8 +16,8 @@
       <ul class="nav navbar-nav">
         <% if current_user %>
           <li><%= link_to t("card.trainer"), trainers_path %></li>
-          <li><%= link_to t("card.all_cards"), cards_path %></li>
-          <li><%= link_to t("card.add_card"), new_card_path %></li>
+          <li><%= link_to t("pack.all"), packs_path %></li>
+          <li><%= link_to t("pack.add"), new_pack_path %></li>
           <li class="reg-btns"><%= link_to t("user.log_out"), log_out_path, method: :delete %></li>
           <li class="reg-btns"><%= link_to current_user.email, user_path(current_user) %></a></li>
         <% else %>
@@ -31,6 +31,10 @@
       <%= yield %>
     </section>
   </section>
+  <% if flash[:notice] %>
+    <div class="alert alert-success"><%= flash[:notice] %><div>
+  <% end %>
+  </br>
   <% if flash[:alert] %>
     <div class="alert alert-info "><%= flash[:alert] %><div>
   <% end %>
