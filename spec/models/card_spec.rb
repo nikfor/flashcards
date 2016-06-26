@@ -31,7 +31,8 @@ describe Card, type: :model  do
     end
 
     it "dont create card without pack" do
-      expect{ Card.create(original_text: "Sister", translated_text: "Сестра") }.to raise_error
+      # expect( build( :card, original_text: "Sister", translated_text: "Сестра", pack_id: nil) ).not_to be_valid
+      expect{Card.create(original_text: "Sister", translated_text: "Сестра")}.not_to allow_value(nil).for(:pack_id)
     end
 
   end
