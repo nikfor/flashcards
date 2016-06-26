@@ -64,3 +64,9 @@ group :test do
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
+ruby "2.2.1"
+

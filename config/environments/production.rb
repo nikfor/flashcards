@@ -78,5 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.paperclip_defaults = config_for(:paperclip).deep_symbolize_keys
+  config.logger = Logger.new(STDOUT)
+  config.logger.level = Logger::DEBUG
 
 end
