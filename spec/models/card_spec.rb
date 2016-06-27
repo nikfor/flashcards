@@ -31,8 +31,9 @@ describe Card, type: :model  do
     end
 
     it "dont create card without pack" do
-      # expect( build( :card, original_text: "Sister", translated_text: "Сестра", pack_id: nil) ).not_to be_valid
-      expect{Card.create(original_text: "Sister", translated_text: "Сестра")}.not_to allow_value(nil).for(:pack_id)
+      example_card = build( :card, original_text: "Sister", translated_text: "Сестра", pack_id: nil)
+      expect( example_card.valid? ).to be false
+      expect( example_card.errors.messages[:pack_id].first ).to eql "translation missing: ru.activerecord.errors.models.card.attributes.pack_id.blank"
     end
 
   end
