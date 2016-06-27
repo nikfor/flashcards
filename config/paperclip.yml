@@ -5,6 +5,8 @@ production:
     host_name: <%= ENV['AMAZON_HOST_NAME'] %>
     access_key_id: <%= ENV['AMAZON_ACCESS_KEY_ID'] %>
     secret_access_key: <%= ENV['AMAZON_SECRET_KEY'] %>
+  url: ':s3_domain_url'
+  path: '/:class/:attachment/:id_partition/:style/:filename'
 
 development:
   storage: :s3
@@ -13,3 +15,5 @@ development:
     host_name: <%= ENV['AMAZON_HOST_NAME'] %>
     access_key_id: <%= ENV['AMAZON_ACCESS_KEY_ID'] %>
     secret_access_key: <%= ENV['AMAZON_SECRET_KEY'] %>
+  url: ':s3_domain_url'
+  path: '/:class/:attachment/:id_partition/:style/:filename'
