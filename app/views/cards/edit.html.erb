@@ -1,10 +1,15 @@
 <%= simple_form_for [parent_pack, @card] do |f| %>
+  <div class="input_block">
     <%= f.input :original_text, label: t("card.original_text"), class: "text_field"%>
     <%= f.input :translated_text, label: t("card.translated_text"), class: "text_field" %>
     <%= f.input :review_date, as: :string, label: t("card.review_date"), class: "text_field" %>
+    <%= f.input :avatar, as: :file, label: t("card.picture_add") %>
+    <%= f.button :submit, t("card.edit_card_btn"), class: "left_btn"%>
+  </div>
+  <div class="image_block">
     <% if @card.avatar %>
       <%= image_tag @card.avatar.url(:medium), class: "edit_car_picture" %>
     <% end %>
-    <%= f.input :avatar, as: :file, label: t("card.picture_add") %>
-    <%= f.button :submit, t("card.edit_card_btn"), class: "left_btn"%>
+  </div>
+  <div class="clearfix"></div>
  <% end %>

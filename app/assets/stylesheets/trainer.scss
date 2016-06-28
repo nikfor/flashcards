@@ -3,8 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.card_picture_block{
-  position: absolute;
-  left: 803px;
-  top: 285px;
+.text_block{
+  float: left;
 }
+
+.card_picture_block{
+  float: left;
+}
+
+
