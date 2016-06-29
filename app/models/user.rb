@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   end
 
   validates :email, presence: true
-  validates :email, email_format: { message: I18n.t('user.invalid_email_message') }
+  # validates :email, email_format: { message: I18n.t('user.invalid_email_message') }
   validates :email, uniqueness: { message: I18n.t('user.with_given_email_is_already_registered') }
   validates :password,
               length: { minimum: 3, message: I18n.t('user.password_has_to_be_more_than_3_char') },

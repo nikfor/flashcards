@@ -16,13 +16,13 @@ describe "check registration page", type: :feature do
       expect(page.find('.alert')).to have_content 'Успешная регистрация'
     end
 
-  it 'is registred with invalid email' do
-    fill_in 'Почта', :with => 'abcdabcd.com'
-    fill_in 'Пароль', :with => 'marat'
-    fill_in 'Подтверждение пароля', :with => 'marat'
-    click_button 'Создать'
-    expect(page).to have_content I18n.t('user.invalid_email_message')
-  end
+  # it 'is registred with invalid email' do
+  #   fill_in 'Почта', :with => 'abcdabcd.com'
+  #   fill_in 'Пароль', :with => 'marat'
+  #   fill_in 'Подтверждение пароля', :with => 'marat'
+  #   click_button 'Создать'
+  #   expect(page).to have_content I18n.t('user.invalid_email_message')
+  # end
 
   it 'is registred with existing in base email' do
     fill_in 'Почта', :with => 'example@abcd.ru'

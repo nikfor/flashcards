@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
 
 
  # get 'welcome/index'
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   # get 'packs/:id/current', to: 'packs#current_pack', as: :current_pack
 
-  resources :users, only: [:show, :edit, :update]
+  resource :users, only: [:show, :edit, :update]
   get '/registration', to: 'registrations#new'
   post '/registrations', to: 'registrations#create'
 

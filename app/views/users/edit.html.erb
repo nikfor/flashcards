@@ -1,5 +1,5 @@
 <h1>Редактирование пользователя</h1>
-<%= simple_form_for @user do |f| %>
+<%= simple_form_for @user, url: :users do |f| %>
   <%= f.input :email, label: t("user.email"), class: "text_field"%>
   <%= f.input :old_password, label: t("user.old_password"), class: "text_field" %>
   <%= f.input :password, label: t("user.new_password"), class: "text_field" %>

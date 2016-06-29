@@ -25,7 +25,7 @@ describe "check registration page", type: :feature do
     end
 
     it 'is edits user password' do
-      visit(edit_user_path(user))
+      visit(edit_users_path)
       fill_in 'Старый пароль', with: '12345678'
       fill_in 'Новый пароль', with: 'another_password'
       fill_in 'Повторите новый пароль', with: 'another_password'

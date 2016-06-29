@@ -11,7 +11,7 @@
   def update
     if User.authenticate(params[:user][:email], params[:user][:old_password])
       if @user.update(user_params.except(:old_password))
-        redirect_to user_path(@user)
+        redirect_to users_path(@user)
       else
         render "edit"
       end
@@ -24,7 +24,7 @@
   private
 
   def find_user
-    @user = User.find_by(id: params[:id])
+    @user = current_user
     render_404 unless @user
   end
 
