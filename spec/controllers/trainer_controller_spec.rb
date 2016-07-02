@@ -19,9 +19,9 @@ describe TrainerController, type: :controller do
        expect(response).to redirect_to('/flashcard')
     end
 
-    it 'call touch_review_date!' do
+    it 'call review method of (ReviewCardService)' do
       request.env["HTTP_REFERER"] = "/flashcard"
-      expect_any_instance_of(Card).to receive(:touch_review_date!)
+      expect_any_instance_of(ReviewCardService).to receive(:review)
       post :review, id: test_card.id, expected_card: {expected_text: 'provide'}
     end
   end
