@@ -15,14 +15,12 @@ class TrainerController < ApplicationController
     unless card
       render_404
     else
-      if card.eql_translation?(params[:expected_card][:expected_text])
-        card.touch_review_date!
-        redirect_to :back
+      if ReviewCardService.new(card, params[:expected_card][:expected_text]).review
         flash[:notice] = t("alert.right")
       else
-        redirect_to :back
-        flash[:notice] = t("alert.not_right")
+        flash[:alert] = t("alert.not_right")
       end
+      redirect_to :back
     end
   end
 
