@@ -8,12 +8,20 @@ class ReviewCardService
   end
 
   def review
-    if eql_translation?(expected_text)
+    result = Hash.new
+    case Levenshtein.distance(card.original_text.downcase, expected_text.downcase)
+    when 0
       card.update_attributes(count_success_attempts:  card.count_success_attempts + 1, count_unsuccess_attempts: 0)
-      result = true
+      result[:success] = true
+      result[:text] = I18n.t("alert.right")
+    when 1..3
+      card.update_attributes(count_success_attempts:  card.count_success_attempts + 1, count_unsuccess_attempts: 0)
+      result[:success] = true
+      result[:text] = I18n.t('alert.typo') + " '#{card.translated_text}': #{card.original_text}. " + I18n.t('alert.typo2') + " #{expected_text}"
     else
       card.update_attributes(count_unsuccess_attempts: card.count_unsuccess_attempts + 1)
-      result = false
+      result[:success] = false
+      result[:text] = I18n.t("alert.not_right")
     end
     touch_review_date
     result
@@ -23,11 +31,6 @@ class ReviewCardService
 
   def touch_review_date
     card.update_column(:review_date, date_for_review)
-  end
-
-
-  def eql_translation?(text)
-    card.original_text.downcase == text.downcase
   end
 
   def date_for_review

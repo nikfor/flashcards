@@ -106,6 +106,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.1)
+    levenshtein (0.2.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -245,6 +246,7 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
+  levenshtein (~> 0.2.2)
   nokogiri (~> 1.6)
   paperclip
   pg (~> 0.15)
