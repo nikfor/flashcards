@@ -4,6 +4,8 @@ engines:
     enabled: true
   bundler-audit:
     enabled: true
+    exclude_fingerprints:
+    - 9dd8b842d67a55816249fccc1e7242cc
   coffeelint:
     enabled: true
   duplication:
