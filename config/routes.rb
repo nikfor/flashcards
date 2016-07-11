@@ -1,8 +1,8 @@
-  Rails.application.routes.draw do
+Rails.application.routes.draw do
 
 
- # get 'welcome/index'
- # root 'welcome#index'
+  # get 'welcome/index'
+  # root 'welcome#index'
   root 'trainer#index'
   post 'trainer/:id', to: 'trainer#review', as: :trainer
   get 'trainers/', to: 'trainer#index', as: :trainers

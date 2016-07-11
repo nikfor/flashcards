@@ -28,9 +28,9 @@ describe CardsController, type: :controller do
     context 'image of cards tests' do
       it { expect(test_card).to have_attached_file(:avatar) }
       it { expect(test_card).to validate_attachment_content_type(:avatar).
-                allowing('image/png', 'image/gif', 'image/jpg', 'image/jpeg').
-                rejecting('text/plain', 'text/xml')
-          }
+        allowing('image/png', 'image/gif', 'image/jpg', 'image/jpeg').
+        rejecting('text/plain', 'text/xml')
+      }
     end
 
   end
@@ -62,8 +62,8 @@ describe CardsController, type: :controller do
   describe '#destroy' do
 
     it 'redirect to cards_path if card found' do
-       delete :destroy, pack_id: test_card.pack_id, id: test_card.id
-       expect(response).to redirect_to(pack_cards_path)
+      delete :destroy, pack_id: test_card.pack_id, id: test_card.id
+      expect(response).to redirect_to(pack_cards_path)
     end
 
     it 'render 404 page if card not found' do

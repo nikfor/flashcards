@@ -25,6 +25,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem "paperclip"
 gem 'aws-sdk', '< 2.0'
 gem 'levenshtein', '~> 0.2.2'
+gem 'rubocop', '~> 0.41.2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
