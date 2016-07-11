@@ -24,7 +24,8 @@ namespace :flashcards do
       puts "user was created with email: #{user.email} and password: #{user.password}"
     end
 
-    if cards_without_user = Card.where("user_id is NULL")
+    cards_without_user = Card.where("user_id is NULL")
+    if cards_without_user
       cards_without_user.each { |card| card.user_id = user.id }
     end
   end

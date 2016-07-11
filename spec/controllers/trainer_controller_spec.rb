@@ -21,7 +21,8 @@ describe TrainerController, type: :controller do
 
     it 'call review method of ReviewCardService' do
       request.env["HTTP_REFERER"] = "/flashcard"
-      expect_any_instance_of(ReviewCardService).to receive(:review).and_return(success: true, text: "Right")
+      result = Struct.new(:status, :text)
+      expect_any_instance_of(ReviewCardService).to receive(:review).and_return(result.new(true, 'Верно'))
       post :review, id: test_card.id, expected_card: {expected_text: 'provide'}
     end
   end
