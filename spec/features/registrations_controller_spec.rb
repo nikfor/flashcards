@@ -51,5 +51,4 @@ describe "check registration page", type: :feature do
 
   end
 
-
-  end
+end

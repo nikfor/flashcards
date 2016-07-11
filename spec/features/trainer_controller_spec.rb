@@ -43,5 +43,4 @@ describe "check word page", type: :feature do
       click_button 'Проверить'
       expect(page.find('.alert-info')).to have_content I18n.t("alert.no_have_cards")
     end
-
-  end
+end
