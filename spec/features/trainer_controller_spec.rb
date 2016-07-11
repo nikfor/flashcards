@@ -30,6 +30,12 @@ describe "check word page", type: :feature do
       expect(page.find('.alert')).to have_content I18n.t("alert.right")
     end
 
+    it 'translates with typo' do
+      fill_in 'expected_original_text', :with => 'Pravvide'
+      click_button 'Проверить'
+      expect(page.find('.alert')).to have_content I18n.t('alert.typo') + " '#{card.translated_text}': #{card.original_text}. " + I18n.t('alert.typo2') + " Pravvide"
+    end
+
     it 'has no actual cards in base' do
       fill_in 'expected_original_text', :with => 'Provide'
       click_button 'Проверить'

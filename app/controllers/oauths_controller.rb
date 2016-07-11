@@ -9,7 +9,8 @@ class OauthsController < ApplicationController
 
   def callback
     provider = auth_params[:provider]
-    if @user = login_from(provider)
+    @user = login_from(provider)
+    if @user
       redirect_to packs_path, alert: "Logged in from #{provider.titleize}!"
     else
       begin

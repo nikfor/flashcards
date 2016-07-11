@@ -24,6 +24,7 @@ gem 'validates_email_format_of'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem "paperclip"
 gem 'aws-sdk', '< 2.0'
+gem 'levenshtein', '~> 0.2.2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
