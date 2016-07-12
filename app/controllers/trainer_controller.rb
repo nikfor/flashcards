@@ -17,10 +17,10 @@ class TrainerController < ApplicationController
       render_404
     else
       result_review = ReviewCardService.new(card, params[:expected_card][:expected_text]).review
-      if result_review.status
-        flash[:notice] = result_review.text
+      if result_review.success?
+        flash[:notice] = result_review.message
       else
-        flash[:alert] = result_review.text
+        flash[:alert] = result_review.message
       end
       redirect_to :back
     end

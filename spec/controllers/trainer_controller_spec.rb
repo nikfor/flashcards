@@ -1,4 +1,4 @@
-require 'rails_helper'
+  require 'rails_helper'
 
 describe TrainerController, type: :controller do
 
@@ -21,7 +21,11 @@ describe TrainerController, type: :controller do
 
     it 'call review method of ReviewCardService' do
       request.env["HTTP_REFERER"] = "/flashcard"
-      result = Struct.new(:status, :text)
+      result = Struct.new(:status, :message) do
+        def success?
+          status ? true : false
+        end
+      end
       expect_any_instance_of(ReviewCardService).to receive(:review).and_return(result.new(true, 'Верно'))
       post :review, id: test_card.id, expected_card: {expected_text: 'provide'}
     end
